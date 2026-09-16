@@ -15,7 +15,7 @@ original. After the copy was created, original was mutated, alias picked it up b
 was pointing to the original and alias is not a separate object. alias in namespace holds
 the same address as original which points to [10,20,30]
 '''
-print(id(original))
+print(id(original)) # prints the address of the object in heap, which is ref'd in namespace
 print(id(alias)) # same as original
 print(id(copy)) # different
 
