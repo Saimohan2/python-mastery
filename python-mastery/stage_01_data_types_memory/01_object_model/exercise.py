@@ -24,3 +24,63 @@ print(sys.getrefcount(original)) # guessing 3 actual original, alias pointing, t
 del alias
 
 print(sys.getrefcount(original)) # guessing 2, as alias is now deleted
+
+
+# revise
+
+a = [1,2,3]
+b = a
+c = a[:]
+
+print(id(a))
+print(id(b))
+
+print(id(a) == id(b))
+print(a is b)
+
+a.append(10)
+
+print(sys.getrefcount(a))
+
+print(a)
+print(b)
+print(c)
+
+sample = [10000,2]
+another = sample
+print(sys.getrefcount(sample[0]))
+print(sample)
+print(f"Sample address: {id(sample)}, another address: {id(another)}")
+print(id(sample) == id(another))
+print(id(sample[0]))
+print(id(another[0]))
+print(f"same id? : {id(sample[0]) == id(another[0])}")
+print(f"same object? : {sample[0] is another[0]}")
+
+i = sample[0]
+
+print(sys.getrefcount(sample[0]))
+
+p = [20000]
+
+print("Before:", sys.getrefcount(p[0]))
+
+j = p[0]
+print("After:", sys.getrefcount(p[0]))
+
+del j
+print("After deleting j:", sys.getrefcount(p[0]))
+
+import dis
+
+def test():
+
+    ls = [5000, int("2000")]
+
+    x = ls[0]
+
+    print(x)
+
+dis.dis(test)
+
+print(globals())
